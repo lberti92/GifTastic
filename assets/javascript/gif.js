@@ -20,14 +20,30 @@ function displayArtist (data) {
         $("#artist-input").val("");
       });
 
+      renderButtons();
+
+      $("#artist-buttons").on("click", "button", function() {
+
+        var person = $(this).attr("data-person");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        person + "&api_key=nV8R8RZprkCia9P7rvv421Tc6FoiHOkq&limit=10";
+
+        $.ajax({
+            method: "GET",
+            url: queryURL
+        }).then(function(response) {
+            console.log(response);
+
+        })
+
+      })
 //     // In this case, the "this" keyword refers to the button that was clicked
 //     var person = $(this).attr("data-person"); // Michael J. Fox
 
 //     // Consructing a URL to search Giphy for the name of the person who said the quote
 //     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-//         person + "&api_key=nV8R8RZprkCia9P7rvv421Tc6FoiHOkq&limit=10";
+//         artist + "&api_key=nV8R8RZprkCia9P7rvv421Tc6FoiHOkq&limit=10";
 
-//     // Performing our AJAX GET request
 //     $.ajax({
 //         url: queryURL,
 //         method: "GET"
@@ -59,4 +75,4 @@ function displayArtist (data) {
 // });
 // }
 displayArtist();
-renderButtons();
+
